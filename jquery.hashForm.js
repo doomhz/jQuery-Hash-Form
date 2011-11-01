@@ -14,32 +14,35 @@
 *
 */
 (function ($) {
-	$.fn.hashForm = function () {
-		self = this;
-		$self = $(this);
-		
-                self.expandStringFieldToHash = function (fieldName, fieldValue) {
-                                var keys = fieldName.replace(/\]/g, '').split('[');
-                                var hashStart = '{';
-                                var hashEnd = '';
-                                $.each(keys, function (index, value) {
-                                        hashStart += '"' + value + '":{';
-                                        hashEnd += '}';
-                                });
-                                hashStart = hashStart.slice(0, hashStart.length - 1);
-                                hashStart += '"' + fieldValue + '"';
-                                var hash = hashStart + hashEnd;
-                                return JSON.parse(hash);
-                        }
-                self.addFieldToHash = function (field) {
-                                var hash = self.expandStringFieldToHash(field.name, field.value)
-                                $.extend(true, formHash, hash);
-                        }
-		var serializedFormData = $self.serializeArray();
-                var formHash = {};
-                $.each(serializedFormData, function (index, field) {
-                    self.addFieldToHash(field);
-                });
-		return formHash;
-	}
+    $.fn.hashForm = function () {
+        var self = this, $self = $(this);
+
+        self.expandStringFieldToHash = function (fieldName, fieldValue) {
+            var keys = fieldName.replace(/\]/g, '').split('[');
+            var hashStart = '{';
+            var hashEnd = '';
+            $.each(keys, function (index, value) {
+                hashStart += '"' + value + '":{';
+                hashEnd += '}';
+            });
+            hashStart = hashStart.slice(0, hashStart.length - 1);
+            hashStart += '"' + fieldValue + '"';
+            var hash = hashStart + hashEnd;
+            return JSON.parse(hash);
+        };
+
+        self.addFieldToHash = function (field) {
+            var hash = self.expandStringFieldToHash(field.name, field.value)
+            $.extend(true, formHash, hash);
+        }
+
+        var serializedFormData = $self.serializeArray();
+        var formHash = {};
+
+        $.each(serializedFormData, function (index, field) {
+            self.addFieldToHash(field);
+        });
+
+        return formHash;
+    }
 })(jQuery);
