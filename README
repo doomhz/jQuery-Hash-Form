@@ -2,3 +2,12 @@ jQuery Hash Form Plugin
 
 Get form values as object.
 
+Usefull to set up a Backbone.js model properties
+
+var model = new Backbone.Model();
+model.set($('#my_form').hashForm());
+
+or
+
+model.url = '/user'
+model.save($('#my_form').hashForm());
