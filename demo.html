@@ -1,0 +1,34 @@
+<html>
+	<head>
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
+		<script type="text/javascript" src="jquery.hashForm.js"></script>
+	</head>
+	<body>
+		<form>
+			<input type="text" value="blah" name="input1" />
+			<input type="text" value="Doom" name="user[username]" />
+			<input type="text" value="D" name="user[email]" />
+			<input type="text" value="Chuck" name="user[family][name]" />
+			<input type="text" value="Norris" name="user[family][surname]" />
+			<select name="country">
+				<option value="germany">Germany</option>
+				<option value="italy" selected="selected">Italy</option>
+				<option value="belgium">Belgium</option>
+			</select>
+			<select name="cars" type="multiple">
+				<option value="ford" selected="selected">Ford</option>
+				<option value="opel">Opel</option>
+				<option value="bmw" selected="selected">BMW</option>
+			</select>
+			<input type="radio" name="newsletter" value="yes" />	
+			<input type="radio" name="newsletter" value="no" checked="checked" />	
+			<input type="checkbox" name="food" value="meat" />
+			<input type="checkbox" name="food" value="apples" checked="checked" />
+			<textarea name="description">Graet success!</textarea>
+			<input type="submit" value="Submit" />
+		</form>
+		<script type="text/javascript">
+			console.log($('form').hashForm());
+		</script>
+	</body>
+</html>
